@@ -1,0 +1,31 @@
+[project]
+name = "continuity"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiohttp>=3.12.12",
+    "chonkie[all]>=1.0.10",
+    "openai>=1.86.0",
+    "psycopg2>=2.9.10",
+    "pydantic-settings>=2.9.1",
+    "qdrant-client>=1.14.2",
+    "redis>=6.2.0",
+    "sqlmodel>=0.0.24",
+]
+
+[tool.setuptools]
+package-dir = { "base" = "base" }
+
+[tool.pyright]
+reportMissingImports = true
+reportSyntaxErrors = true
+reportMissingTypeStubs = false
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
+reportUnknownLambdaType = "none"
+reportMissingModuleSource = true
+reportGeneralTypeIssues = false
+typeCheckingMode = "off"

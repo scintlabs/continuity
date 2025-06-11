@@ -1,0 +1,13 @@
+from pydantic import BaseModel
+
+
+class IngestRequest(BaseModel): ...
+
+
+class ContextRequest(BaseModel): ...
+
+
+class KnowledgeRequest(BaseModel): ...
+
+
+class ClassificationRequest(BaseModel): ...
