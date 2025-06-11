@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from base.api.schema import IngestRequest, QueryRequest
+from base.schema.requests import IngestRequest, QueryRequest
 
 router = APIRouter()
 
