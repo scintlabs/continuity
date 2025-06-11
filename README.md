@@ -20,13 +20,13 @@ A reactive memory layer for LLM-driven agents that gives each call a rich, human
 
 ## Tech Stack
 
-| Layer            | Technology       | Purpose                                 |
-|------------------|------------------|-----------------------------------------|
-| Persistence      | Postgres         | Raw messages, thread metadata, indexes  |
-| Vector Store     | Qdrant           | Embeddings for messages and thread      |
-| Cache            | Redict           | Store last-seen `Context` objects       |
-| API              | FastAPI          | Expose `/memory/context` endpoint       |
-| LLM Client       | OpenAI (LLM API) | Summaries, context compression, queries |
+| Layer            | Technology       | Purpose                                                |
+|------------------|------------------|--------------------------------------------------------|
+| API              | FastAPI          | Endpoints                                              |
+| Embedding        | Qdrant           | Vector search and storage                              |
+| Persistence      | Postgres         | Storing threads, preferences, and uploaded data        |
+| Models           | OpenAI           | Generating Summaries, classifications, and embeddings  |
+| Cache            | Redict           | Storing last-seen context storage                      |
 
 ## Creating Continuity
 
