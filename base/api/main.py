@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 
-from base.api.routes import ingest, retrieve
+from base.api import routes
 
 api_router = APIRouter()
-api_router.include_router(ingest.router)
-api_router.include_router(retrieve.router)
+api_router.include_router(routes.router)
