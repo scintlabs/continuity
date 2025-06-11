@@ -6,7 +6,26 @@ from typing import Any
 from base.config import OPENAI_CLIENT
 
 
-async def classify(self, obj: Any, kind: str, /, val: str = None):
+async def classify(obj: Any, kind: str, /, val: str | None = None) -> str | None:
+    """Classify ``obj`` using the configured OpenAI client.
+
+    Parameters
+    ----------
+    obj : Any
+        The object or text being classified.
+    kind : str
+        Either ``"parameter"`` or ``"thread"`` to determine the
+        prompt template used.
+    val : str, optional
+        The name of the parameter when ``kind`` is ``"parameter"``.
+
+    Returns
+    -------
+    str | None
+        The generated text returned by OpenAI or ``None`` if no text
+        was produced.
+    """
+
     req = {
         "model": "o4-mini",
         "top_p": round(random.uniform(0.5, 1), 2),

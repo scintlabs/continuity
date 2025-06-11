@@ -2,7 +2,7 @@ import os
 import secrets
 from typing import Annotated, Any, Literal
 
-from openai import OpenAI
+from openai import AsyncOpenAI
 
 from pydantic import AnyUrl, BeforeValidator, PostgresDsn, computed_field
 from pydantic_core import MultiHostUrl
@@ -71,9 +71,7 @@ class Settings(BaseSettings):
     REDIS_STREAM_KEY = "memory_ingest"
     EMBED_API = "https://api.openai.com/v1/embeddings"
     EMBED_MODEL = "text-embedding-3-small"
+    OPENAI_CLIENT = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
     OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
-
 settings = Settings()
-OPENAI_CLIENT = OpenAI(api_key=settings.OPENAI_API_KEY)
-settings.OPENAI_CLIENT = OPENAI_CLIENT
