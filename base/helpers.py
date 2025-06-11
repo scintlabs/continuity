@@ -162,7 +162,7 @@ def _type_schema(cls):
     }
 
 
-def serialize(self, obj: Any):
+def serialize(obj: Any):
     if inspect.isfunction(obj):
         return {
             "type": "function",
