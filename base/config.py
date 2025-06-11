@@ -2,6 +2,8 @@ import os
 import secrets
 from typing import Annotated, Any, Literal
 
+from openai import OpenAI
+
 from pydantic import AnyUrl, BeforeValidator, PostgresDsn, computed_field
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -22,11 +24,24 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     SECRET_KEY: str = secrets.token_urlsafe(32)
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
+    PROJECT_NAME: str = "Continuity"
     FRONTEND_HOST: str = "http://localhost:5173"
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
     BACKEND_CORS_ORIGINS: Annotated[
         list[AnyUrl] | str, BeforeValidator(parse_cors)
     ] = []
+
+    @computed_field
+    @property
+    def all_cors_origins(self) -> list[str]:
+        origins = (
+            [str(o) for o in self.BACKEND_CORS_ORIGINS]
+            if isinstance(self.BACKEND_CORS_ORIGINS, list)
+            else [str(self.BACKEND_CORS_ORIGINS)] if self.BACKEND_CORS_ORIGINS else []
+        )
+        if self.FRONTEND_HOST:
+            origins.append(self.FRONTEND_HOST)
+        return list(dict.fromkeys(origins))
 
     PG_SERVER: str
     PG_PORT: int = 5432
@@ -60,3 +75,5 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+OPENAI_CLIENT = OpenAI(api_key=settings.OPENAI_API_KEY)
+settings.OPENAI_CLIENT = OPENAI_CLIENT
