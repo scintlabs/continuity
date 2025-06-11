@@ -2,6 +2,8 @@ import os
 import secrets
 from typing import Annotated, Any, Literal
 
+from openai import AsyncOpenAI
+
 from pydantic import AnyUrl, BeforeValidator, PostgresDsn, computed_field
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -60,3 +62,5 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+OPENAI_CLIENT = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
