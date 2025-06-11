@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 
 from attrs import define, field
 
-from base.core.schemas.messages import Content, Instructions
+from base.schema.messages import Content, Instructions
 
 
 @define

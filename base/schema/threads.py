@@ -7,8 +7,8 @@ from typing import Callable, List, Optional
 from attrs import define, field
 
 from base.core.helpers import timestamp
-from base.core.schemas.context import Metadata
-from base.core.schemas.messages import Content
+from base.schema.context import Metadata
+from base.schema.messages import Content
 
 
 THREAD_TIMEOUT = timedelta(minutes=30)
